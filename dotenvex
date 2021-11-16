@@ -1,0 +1,2 @@
+MONGO_URL=mongodb+srv://solayman:solayman@cluster0.c7dxv.mongodb.net/myFirstDatabase?retryWrites=true&w=majority
+AUTH=abcde
