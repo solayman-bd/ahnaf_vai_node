@@ -1,20 +1,16 @@
-const createError = require("http-errors");
+const { responseGenerator } = require("../../utils");
 
 // 404 not found handler
 function notFoundHandler(req, res, next) {
-  next(createError(404, "Your requested content is not found!"));
+  res.status(404).json(responseGenerator(null, 404, "Not found"));
 }
 
 // default error handler
 function errorHandler(err, req, res, next) {
-  if (res.headerSent) {
-    next("There was e problem");
+  if (err.message) {
+    res.status(500).json(responseGenerator(null, 500, err.message));
   } else {
-    if (err.message) {
-      res.status(500).send(err.message);
-    } else {
-      res.status(500).send("There was an error");
-    }
+    res.status(500).json(responseGenerator(null, 500, "There was an error"));
   }
 }
 

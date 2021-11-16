@@ -4,12 +4,13 @@ const express = require("express");
 const dotenv = require("dotenv");
 const cors = require("cors");
 //internal import
-const mongooseConnection = require("./utils.js");
+
 const albumRoute = require("./routes/albumRoute.js");
 const {
   notFoundHandler,
   errorHandler,
 } = require("./middlewares/common/errorHandler.js");
+const { mongooseConnection } = require("./utils.js");
 
 const app = express();
 dotenv.config();

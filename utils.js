@@ -12,4 +12,16 @@ const mongooseConnection = async () => {
     console.log("Error", err);
   }
 };
-module.exports = mongooseConnection;
+const responseGenerator = (
+  responseBody,
+  responseStatus,
+  responseDescription
+) => {
+  return {
+    responseBody: responseBody,
+    responseStatus: responseStatus,
+    responseDescription: responseDescription,
+    responseTimestamp: new Date().toISOString(),
+  };
+};
+module.exports = { mongooseConnection, responseGenerator };
