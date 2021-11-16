@@ -24,6 +24,8 @@ albumRoute.post("/", async (req, res) => {
       //save user to database and response
       const album = await newAlbum.save();
       res.status(200).json(album);
+    } else {
+      res.status(401).json("Unauthorized Request");
     }
   } catch (err) {
     res.status(500).json(err);
