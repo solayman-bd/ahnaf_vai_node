@@ -6,6 +6,10 @@ const cors = require("cors");
 //internal import
 const mongooseConnection = require("./utils.js");
 const albumRoute = require("./routes/albumRoute.js");
+const {
+  notFoundHandler,
+  errorHandler,
+} = require("./middlewares/common/errorHandler.js");
 
 const app = express();
 dotenv.config();
@@ -22,6 +26,13 @@ app.use("/album", albumRoute);
 app.get("/", (req, res) => {
   res.send("Backend is running");
 });
+
+// 404 not found handler
+app.use(notFoundHandler);
+
+// common error handler
+app.use(errorHandler);
+
 app.listen(port, () => {
   console.log(`Backend is running to port ${port}`);
 });
